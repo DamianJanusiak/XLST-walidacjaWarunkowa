@@ -1,0 +1,12 @@
+<Root>
+	<Buffor>
+		<MyElement>
+			<A></A>
+			<C>
+				<D>AAA</D>
+				<D>BBB</D>
+			</C>
+		</MyElement>
+	</Buffor>
+</Root>
+
