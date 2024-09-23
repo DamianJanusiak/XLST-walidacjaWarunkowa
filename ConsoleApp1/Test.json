@@ -1,24 +1,33 @@
-﻿[
-  {
-    "NodeContext": "MyElement",
-    "Rules": [
-      {
-        "Condition": "Id_Ser and not(A)",
-        "Message": "Element 'A' must be present when Id_Ser is present."
-      },
-      {
-        "Condition": "not(Id_Ser) and A",
-        "Message": "Element 'A' must not be present when Id_Ser is not present."
-      }
-    ]
+﻿{
+  "Namespaces": {
+    "t": "http://test.com"
   },
-  {
-    "NodeContext": "MyElement/C",
-    "Rules": [
-      {
-        "Condition": "count(D) &gt; 1",
-        "Message": "Element 'D' can be set only once."
-      }
-    ]
-  }
-]
+  "ValidationRules": [
+    {
+      "NodeContext": "t:MyElement",
+      "Rules": [
+        {
+          "Condition": "Id_Ser and not(A)",
+          "Message": "Element 'A' must be present when Id_Ser is present."
+        },
+        {
+          "Condition": "not(Id_Ser) and A",
+          "Message": "Element 'A' must not be present when Id_Ser is not present."
+        },
+        {
+          "Condition": "((A[text()='ABC'] and B[text()='PL']) or (C[text() = 'CK0314' or text() = 'CK0315' or text() = 'CK0316'] and D[text() = 'CK0314' or text() = 'CK0315' or text() = 'CK0316'])) and not(E)",
+          "Message": "TEST"
+        }
+      ]
+    },
+    {
+      "NodeContext": "t:MyElement/C",
+      "Rules": [
+        {
+          "Condition": "count(D) &gt; 1",
+          "Message": "Element 'D' can be set only once."
+        }
+      ]
+    }
+  ]
+}

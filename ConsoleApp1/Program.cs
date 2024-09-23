@@ -10,9 +10,11 @@ class Program
 		var xmlDoc = new XmlDocument();
 		xmlDoc.Load("Test.xml");
 
-		var rules = JsonConvert.DeserializeObject<List<ValidationRules>>(File.ReadAllText("Test.json"));
+		var rules = JsonConvert.DeserializeObject<ValidatorConfiguration>(File.ReadAllText("Test.json"));
 
 		var validator = new Validator();
+
+		var xmlRules = XmlReader.Create(new StringReader(File.ReadAllText("Test.xslt")));
 
 		var errors = validator.Validate(xmlDoc, rules);
 

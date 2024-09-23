@@ -1,12 +1,14 @@
-<Root>
+<Root  xmlns:t="http://test.com">
 	<Buffor>
-		<MyElement>
-			<A></A>
+		<t:MyElement>
+			<A>ABC</A>
+			<B>PL</B>
+			<Id_Ser>AAA</Id_Ser>
 			<C>
 				<D>AAA</D>
 				<D>BBB</D>
 			</C>
-		</MyElement>
+		</t:MyElement>
 	</Buffor>
 </Root>
 

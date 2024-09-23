@@ -12,7 +12,7 @@ namespace ConsoleApp1.src
 {
 	public class Validator
 	{
-		public IEnumerable<string> Validate(XmlDocument xml, IEnumerable<ValidationRules> validationRules)
+		public IEnumerable<string> Validate(XmlDocument xml, ValidatorConfiguration validationRules)
 		{
 			var xlst = GenerateXlst(validationRules);
 
@@ -38,17 +38,17 @@ namespace ConsoleApp1.src
 				}
 			}
 			catch (Exception ex)
-			{
+		{
 				Console.WriteLine(ex.ToString());
 				throw;
 			}
 		}
 
-		public XmlReader GenerateXlst(IEnumerable<ValidationRules> rules)
+		public XmlReader GenerateXlst(ValidatorConfiguration configuration)
 		{
 			var validationStr = new StringBuilder();
 
-			foreach (ValidationRules rule in rules)
+			foreach (ValidationRules rule in configuration.ValidationRules)
 			{
 				var conditions = new StringBuilder();
 
@@ -71,8 +71,16 @@ namespace ConsoleApp1.src
 		  </xsl:template>");
 			}
 
+			var namespaceStr = string.Empty;
+
+			foreach (var ns in configuration.Namespaces)
+			{
+				namespaceStr += $"xmlns:{ns.Key}=\"{ns.Value}\"";
+			}
+
 			var str = @$"<?xml version=""1.0"" encoding=""UTF-8""?>
 						<xsl:stylesheet version=""2.0""
+						{namespaceStr}
 							xmlns:xsl=""http://www.w3.org/1999/XSL/Transform"">
 						{validationStr}
 						</xsl:stylesheet>
